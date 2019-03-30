@@ -3,6 +3,7 @@ from sys import exit
 
 
 def calc(wage):
+    '''计算个人所得税'''
     num = wage - 5000
     if num <= 0:
         tax = 0
@@ -20,17 +21,19 @@ def calc(wage):
         tax = num * 0.35 - 7160
     else:
         tax = num * 0.45 - 15160
-    
+
     return format(tax, '.2f')
 
+
 if __name__ == '__main__':
+    # 判断参数，个数大于2或参数非数字则提示错误
     if len(argv) > 2:
-        print('Wrong parmmeter.')
+        print('Parameter Error')
         exit()
     try:
         wage = int(argv[1])
     except ValueError:
-        print('Wrong parmmeter.')
+        print('Parameter Error')
         exit()
     else:
         print(calc(wage))
