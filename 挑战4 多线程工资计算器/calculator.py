@@ -113,8 +113,8 @@ class UserData(Process):
                 for line in f_obj.readlines():
                     list1 = line.split(',')
                     self.user_dict[list1[0]] = list1[1].strip()
-            # return self.user_dict
             self.queue.put(self.user_dict)
+            return self.user_dict
         except FileNotFoundError:
             print('Can not find "%s"' % (args.wage_path))
             exit()
