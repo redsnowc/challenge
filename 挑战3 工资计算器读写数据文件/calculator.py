@@ -174,9 +174,9 @@ class IncomeTax():
 
             result.append([
                 id,
-                '%.2f' % wage,
+                wage,
+				'%.2f' % insurance,
                 '%.2f' % tax,
-                '%.2f' % insurance,
                 '%.2f' % real_wage
             ])
         try:
