@@ -3,6 +3,7 @@ import scrapy
 
 
 class GitSpider(scrapy.Spider):
+    '''使用 'scrapy runspider git.py -o xxx.json' 运行'''
     name = 'git'
     start_urls = ['https://github.com/shiyanlou?tab=repositories']
 
