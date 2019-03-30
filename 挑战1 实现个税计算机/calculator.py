@@ -31,7 +31,7 @@ if __name__ == '__main__':
         print('Parameter Error')
         exit()
     try:
-        wage = int(argv[1])
+        wage = float(argv[1])
     except ValueError:
         print('Parameter Error')
         exit()
