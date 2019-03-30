@@ -170,7 +170,6 @@ class IncomeTax(Process):
         """计算用户数据，并将数据写入文件"""
         result = []
         for k, v in item.items():
-            print(k)
             wage = float(v)
             id = k
             insurance = self.clac_insurance(wage)
