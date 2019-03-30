@@ -13,13 +13,13 @@ BOT_NAME = 'shiyanlou'
 
 SPIDER_MODULES = ['shiyanlou.spiders']
 NEWSPIDER_MODULE = 'shiyanlou.spiders'
-CLOSESPIDER_ITEMCOUNT = 20
+CLOSESPIDER_ITEMCOUNT = 30
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-from fake_useragent import UserAgent
-ua = UserAgent(verify_ssl=False)
-USER_AGENT = ua.random
+#from fake_useragent import UserAgent
+#ua = UserAgent(verify_ssl=False)
+#USER_AGENT = ua.random
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -55,11 +55,11 @@ COOKIES_ENABLED = False
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'shiyanlou.mid.DoubanDownloaderMiddleware': 543,
-#    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+DOWNLOADER_MIDDLEWARES = {
+    'shiyanlou.mid.DoubanDownloaderMiddleware': 543,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 #    'shiyanlou.middlewares.MyCustomDownloaderMiddleware': None,
-#}
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
