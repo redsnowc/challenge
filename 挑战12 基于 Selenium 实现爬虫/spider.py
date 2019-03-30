@@ -13,8 +13,8 @@ def parse(response):
         result = {}
         result['name'] = comment.css(
             'div.user-username a::text').extract_first().strip()
-        result['content'] = comment.css(
-            'div.comment-item-content.markdown-box p::text').extract_first()
+        result['content'] = ', '.join(comment.css(
+            'div.comment-item-content.markdown-box p::text').extract())
         results.append(result)
     return results
 
