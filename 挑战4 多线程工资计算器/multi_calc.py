@@ -1,9 +1,6 @@
 import csv
 from sys import argv, exit
 from multiprocessing import Process, Queue
-from configparser import ConfigParser
-from datetime import datetime
-from getopt import getopt
 
 queue = Queue()
 
@@ -13,45 +10,16 @@ class Args():
 
     def __init__(self):
         """获取命令行参数"""
-        if len(argv) == 9:
-            self.args = argv[1:]
-        elif len(argv) == 2:  # and (argv[1] == '-h' or argv[1] == '--help'):
-            self.get_usage()
+        if len(argv) != 7:
+            print('Wrong parameter.')
+            exit()
         else:
-            print(
-                'Wrong parameter, if you need help, enter "calculator.py -h or --help".')
-            exit()
-
-    def usage(self):
-        """使用说明"""
-        print("========================")
-        print("Usage: calculator.py -C cityname -c configfile -d userdata -o resultdata")
-        print("========================")
-        exit()
-
-    def get_usage(self):
-        """获取使用说明"""
-        try:
-            options, s = getopt(argv[1:], '-h', ['help'])
-        except:
-            print('If you need help, enter "calculator.py -h or --help"')
-            exit()
-        for opt_name, opt_value in options:
-            if opt_name in ('-h', '--help'):
-                self.usage()
-            else:
-                print('If you need help, enter "calculator.py -h or --help"')
-                exit()
+            self.args = argv[1:]
 
     def get_path(self, parm):
         """根据参数获取所需文件路径"""
         path = self.args[self.args.index(parm) + 1]
         return path
-
-    @property
-    def get_city(self):
-        """获取城市"""
-        return self.get_path('-C')
 
     @property
     def cfg_path(self):
@@ -70,25 +38,38 @@ class Args():
 
 
 args = Args()
-cfg = ConfigParser()
 
 
 class Config():
     """配置文件类"""
 
     def __init__(self):
-        self.cfg_value = self.read_cfg_file()
+        self._config = {}
+        self.cfg_value = self.open_cfg_file()
 
-    def read_cfg_file(self):
-        """读取配置文件参数"""
-        cfg.read(args.cfg_path, encoding='UTF-8')
+    def open_cfg_file(self):
+        """获取配置文件并得到相应参数的字典"""
+        try:
+            with open(args.cfg_path) as f_obj:
+                for line in f_obj.readlines():
+                    list1 = line.split('=')
+                    self._config[list1[0].strip()] = list1[1].strip()
+            return self._config
+        except FileNotFoundError:
+            print('Can not find "%s".' % (args.cfg_path))
+            exit()
 
     def get_cfg(self, key):
-        """获取配置文件参数"""
-        if args.get_city.upper() in cfg.sections():
-            return float(cfg.get(args.get_city.upper(), key))
-        else:
-            return float(cfg.get('DEFAULT', key))
+        """获取字典中的值"""
+        try:
+            self.value = float(self.cfg_value[key])
+            return self.value
+        except KeyError:
+            print('Cfg key: "%s" was wrong.' % (key))
+            exit()
+        except ValueError:
+            print('Cfg key: "%s"\'s value was wrong.' % (key))
+            exit()
 
     @property
     def insurance_rate(self):
@@ -201,8 +182,7 @@ class IncomeTax(Process):
                 '%.2f' % wage,
                 '%.2f' % tax,
                 '%.2f' % insurance,
-                '%.2f' % real_wage,
-                datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                '%.2f' % real_wage
             ])
         try:
             with open(args.data_path, 'w') as f_obj:
@@ -215,7 +195,6 @@ class IncomeTax(Process):
         while True:
             try:
                 item = self.queue.get(timeout=1)
-                # print(item)
                 self.save_data(item)
             except:
                 return
