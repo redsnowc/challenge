@@ -9,6 +9,7 @@ def data_plot():
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     user_study_time.plot(ax=ax)
+    ax.set_title('StudyData')
     ax.set_xlabel('User ID')
     ax.set_ylabel('Study Time')
     plt.show()
