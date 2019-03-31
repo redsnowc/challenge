@@ -57,7 +57,7 @@ def main():
     message = '''
         Usage
         =====
-        python3 scan.py [options] --host <host> --port <port>
+        python3 scan.py --host <host> --port <port>
                     
         <host> example 1.1.1.1
         <port> example 20 or 20-40
