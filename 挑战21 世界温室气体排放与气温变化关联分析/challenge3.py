@@ -37,10 +37,10 @@ def climate_plot():
         ax4 = fig.add_subplot(2, 2, 4)
         ax4.set_xlabel('Values')
         ax4.set_ylabel('Values')
-        ghg_temp.plot(ax=ax1, grid=True)
-        ghg_temp.plot.bar(ax=ax2, grid=True)
-        temp2.plot.area(ax=ax3, grid=True)
-        temp2.plot.kde(ax=ax4, grid=True)
+        ghg_temp.plot(ax=ax1)
+        ghg_temp.plot.bar(ax=ax2)
+        temp2.plot.area(ax=ax3)
+        temp2.plot.kde(ax=ax4)
         plt.show()
     return fig
 
