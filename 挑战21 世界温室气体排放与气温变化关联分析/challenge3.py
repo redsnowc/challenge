@@ -31,7 +31,7 @@ def climate_plot():
         ax1.set_ylabel('Values')
         plt.legend(loc='lower right')
         ax2 = fig.add_subplot(2, 2, 2)
-        ghg_temp.plot.bar(ax=ax2, width=0.3, alpha=0.8)
+        ghg_temp.plot.bar(ax=ax2, width=0.6, alpha=0.8)
         ax2.set_xlabel('Years')
         ax2.set_ylabel('Values')
         ax3 = fig.add_subplot(2, 2, 3)
