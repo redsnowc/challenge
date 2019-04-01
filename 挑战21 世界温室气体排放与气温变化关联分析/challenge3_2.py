@@ -19,13 +19,13 @@ def climate_plot():
         pd.to_datetime(data2['Date']))
     temp1 = temp['1990': '2010'].resample('A').mean().set_index(ghg.index)
     temp1 = (temp1 - temp1.min()) / (temp1.max() - temp1.min())
-    # 实验楼挑战检测环境的 pandas 0.20.1 版本不支持注释写法，只能降级或者升级 pandas 版本 
+    # 实验楼挑战检测环境的 pandas 0.20.1 版本不支持注释写法，只能降级或者升级 pandas 版本
     #ghg_temp = temp1.join(ghg)
     ghg_temp = pd.concat([temp1, ghg], axis=1)
     temp2 = temp.resample('Q').mean()
 
     with plt.style.context('Solarize_Light2'):
-        fig = plt.figure()
+        fig = plt.figure(figsize=(16, 10))
         ax1 = fig.add_subplot(2, 2, 1)
         ghg_temp.plot(ax=ax1, marker='*', linewidth=2, alpha=0.8)
         ax1.set_xlabel('Years')

@@ -28,7 +28,7 @@ def climate_plot():
     temp2 = temp.resample('Q').mean()
 
     sns.set()
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16, 10))
     ax1 = fig.add_subplot(2, 2, 1)
     ghg_temp.plot(ax=ax1)
     ax1.set_xlabel('Years')

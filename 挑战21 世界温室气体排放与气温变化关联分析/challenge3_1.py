@@ -24,7 +24,7 @@ def climate_plot():
     ghg_temp = pd.concat([temp1, ghg], axis=1)
     temp2 = temp.resample('Q').mean()
 
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16, 10))
     ax1 = fig.add_subplot(2, 2, 1)
     ghg_temp.plot(ax=ax1)
     ax1.set_xlabel('Years')
