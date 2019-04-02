@@ -3,11 +3,9 @@ import matplotlib.pyplot as plt
 
 
 def get_value(data, code, name):
-    df = data[data['Series code'] == code]
-    df = df.iloc[:, 6:].set_index(
-        df['Country code']).replace('..', pd.np.nan)
+    df = data[data['Series code'] == code].set_index(
+        'Country code').replace('..', pd.np.nan)
     df = df.fillna(method='ffill', axis=1).fillna(method='bfill', axis=1)
-    df = df.fillna(0)
     df = pd.DataFrame(df.sum(axis=1), index=df.index, columns=[name])
     df = (df - df.min()) / (df.max() - df.min())
     return df
@@ -15,8 +13,7 @@ def get_value(data, code, name):
 
 def co2_gdp_plot():
     data = pd.read_excel('ClimateChange.xlsx')
-    co2_gdp = get_value(
-        data, 'EN.ATM.CO2E.KT', 'CO2 SUM').join(
+    co2_gdp = get_value(data, 'EN.ATM.CO2E.KT', 'CO2 SUM').join(
         get_value(data, 'NY.GDP.MKTP.CD', 'GDP SUM'))
     fig = plt.subplot()
     co2_gdp.plot(ax=fig)

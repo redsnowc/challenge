@@ -20,6 +20,7 @@ def climate_plot():
     temp1 = temp['1990': '2010'].resample('A').mean().set_index(ghg.index)
     temp1 = (temp1 - temp1.min()) / (temp1.max() - temp1.min())
     # 实验楼挑战检测环境的 pandas 0.20.1 版本不支持注释写法，只能降级或者升级 pandas 版本 
+    # 可能是因为索引的导致，如果索引为时间序列就会出现，重设索引则正常，可能是版本BUG
     #ghg_temp = temp1.join(ghg)
     ghg_temp = pd.concat([temp1, ghg], axis=1)
     temp2 = temp.resample('Q').mean()
