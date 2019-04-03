@@ -10,13 +10,11 @@ def df(co2, i, name1, name2):
 def co2():
     excel = 'ClimateChange.xlsx'
     data1 = pd.read_excel(excel).set_index('Country code')
-    data2 = pd.read_excel(excel,
-                          'Country').set_index('Country code')
+    data2 = pd.read_excel(excel, 'Country').set_index('Country code')
     df1 = data1[data1['Series code'] == 'EN.ATM.CO2E.KT'].iloc[:, 5:]
     df1.replace('..', pd.np.nan, inplace=True)
     df1 = df1.fillna(method='ffill', axis=1).fillna(method='bfill', axis=1)
-    df1 = pd.DataFrame(df1.groupby('Country code', sort=False).sum(
-        axis=1).sum(axis=1), columns=['Sum emissions'])
+    df1 = pd.DataFrame(df1.df1.sum(axis=1), columns=['Sum emissions'])
     df2 = data2[['Country name', 'Income group']]
     co2 = df2.join(df1)
     co2.replace(0, pd.np.nan, inplace=True)
