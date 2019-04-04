@@ -1,0 +1,6 @@
+{% for i in data %}
+<p><a href="{{ url_for('file', file_id=i.id) }}">{{ i.title }}</a><br/></p>
+{% for a in  mg_db.tag.find_one({'id': i.id})['tag'] %}
+<q> {{ a }} </q>
+{% endfor %}
+{% endfor %}
