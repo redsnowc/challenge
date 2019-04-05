@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Bootstrap core css -->
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ url_for('static', filename="bootstrap-3.3.7-dist/css/bootstrap.min.css") }}" rel="stylesheet">
+</head>
+
+<body>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="{{ url_for('index') }}">Home</a></li>
+    </ul>
+    <br/>
+    {% block body_content %}
+    {% endblock %}
+    <script src="{{ url_for('static', filename="bootstrap-3.3.7-dist/js/bootstrap.min.js") }}"</script>
+</body>
+
+</html>
