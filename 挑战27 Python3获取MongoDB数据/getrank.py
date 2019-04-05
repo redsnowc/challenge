@@ -7,12 +7,13 @@ def get_rank(user_id):
     db = client.shiyanlou
     contests = db.contests
     data = list(contests.aggregate([
-        {"$group": {"_id": "$user_id", "score": { "$sum": "$score"}, "time": { "$sum": "$submit_time" }}},
-        {"$sort": {"score":-1 ,"time":1}}]))
+        {"$group": {"_id": "$user_id", "score": {
+            "$sum": "$score"}, "time": {"$sum": "$submit_time"}}},
+        {"$sort": {"score": -1, "time": 1}}]))
     for i in data:
         if i['_id'] == user_id:
             result = i
-    
+
     try:
         rank = data.index(result) + 1
     except UnboundLocalError:
@@ -21,6 +22,7 @@ def get_rank(user_id):
     score = result['score']
     submit_time = result['time']
     return rank, score, submit_time
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -31,6 +33,4 @@ if __name__ == '__main__':
             print(get_rank(user_id))
         except ValueError:
             print("Parameter Error")
-        sys.exit()
-
-  
+            sys.exit()
