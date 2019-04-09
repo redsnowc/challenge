@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Bootstrap core css -->
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav>
+    	<ul class="nav nav-pills">
+        	<li><a href="{{ url_for('index') }}">Home</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block body_content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

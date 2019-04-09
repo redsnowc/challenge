@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}FILE{% endblock %}
+
+{% block body_content %}
+<div class="page-header">
+    <h1> {{ data.title }} <small> ID: {{ data.id }}</small><h1>
+</div>
+<time> Create Time: {{ data.create_time }} </time>
+<p> Category: {{ data.category.name }} </p>
+<h4> Content: {{ data.content }} </h4>
+{% endblock %}

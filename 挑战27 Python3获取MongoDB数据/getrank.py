@@ -1,5 +1,6 @@
 import sys
 import pymongo
+from bson.son import SON
 
 
 def get_rank(user_id):
@@ -9,7 +10,7 @@ def get_rank(user_id):
     data = list(contests.aggregate([
         {"$group": {"_id": "$user_id", "score": {
             "$sum": "$score"}, "time": {"$sum": "$submit_time"}}},
-        {"$sort": {"score": -1, "time": 1}}]))
+        {"$sort": SON([("score", -1), ("time", 1)])}]))
     for i in data:
         if i['_id'] == user_id:
             result = i

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag{% endblock %}
+{% block body_content %}
+<form method="post">
+    {{ form.csrf_token }}
+    {{ form.tag.label }}<br>{{ form.tag }}<br>
+    {{ form.submit }}<br>
+</form>
+{% endblock %}

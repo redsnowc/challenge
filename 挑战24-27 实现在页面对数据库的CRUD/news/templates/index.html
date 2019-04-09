@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}INDEX{% endblock %}
+
+{% block body_content %}
+    <h1>Category Page</h1>
+    <a href="{{ url_for('new') }}">Create Articel</a>
+
+{% for i in data %}
+<div class="note">
+<p><a href="{{ url_for('file', file_id=i.id) }}">{{ i.title }}</a><br/></p>
+<a class="btn" href="{{ url_for('edit', file_id=i.id) }}">Edit</a>
+<form method="post" action="{{ url_for('delete', file_id=i.id) }}">
+    {{ form1.csrf_token }}
+    {{ form1.submit(class='btn') }}
+</form>
+</div>
+<br>
+{% for a in  mg_db.tag.find_one({'id': i.id})['tag'] %}
+<span> {{ a }} </span>
+<form method="post" action="{{ url_for('deletetag', file_id=i.id, tagname=a) }}">
+    {{ form2.csrf_token }}
+    {{ form2.submit(class='btn') }}
+</form>
+{% endfor %}
+<br>
+<a href="{{ url_for('addtag', file_id=i.id) }}">Add Tag</a>
+<br/>
+{% endfor %}
+{% endblock %}
