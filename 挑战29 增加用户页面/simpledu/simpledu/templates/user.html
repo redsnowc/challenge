@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block body %}
+   <h1>ID: {{ data.id }}</h1>
+   <h1>Username: {{ data.username }}</h1>
+   <h1>Published courses:</h1>
+   {% for i in data.publish_courses %}
+       <p>{{ i.name }}</p>
+   {% endfor %}
+{% endblock %}
