@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <h2>登录</h2>
+<div class="form">
+    <form method="POST" action="{{ url_for('front.login') }}">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.email.label }} {{ form.email(class='form-control') }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label }} {{ form.password(class='form-control') }}
+        </div>
+
+        <div class="checkbox">
+            <label>
+                {{ form.remember_me() }}
+                {{ form.remember_me.label.text }}
+            </label>
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}
