@@ -1,0 +1,48 @@
+{% extends "admin/index.html" %}
+{% from "macros.html" import render_pagination %}
+
+{% block title %}
+Admin - users
+{% endblock %}
+
+{% block operation %}
+<a href="{{ url_for('admin.create_user') }}" type="button" class="btn btn-primary">
+  <span class="glyghicon glyghicon-plus" aria-hidden="true"></span>
+  添加用户
+</a>
+{% endblock %}
+{% block admin %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>姓名</th>
+      <th>邮箱</th>
+      <th>权限</th>
+      <th>操作</th>
+    </tr>
+    <tbody>
+      {% for user in pagination.items %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <div class="btn-group" role="group">
+              <a href="{{ url_for('admin.edit_user', user_id=user.id) }}" type="button" class="btn btn-default" title="编辑">
+              <span class="glyphicon glyphicon-pencil" title="编辑" aria-hidden="true"></span>
+            </a>
+            <a href="{{ url_for('admin.delete_user', user_id=user.id) }}" type="button" class="btn btn-default" title="删除">
+              <span class="glyphicon glyphicon-trash" title="删除" aria-hidden="true"></span>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </thead>
+</table>
+
+{{ render_pagination(pagination, 'admin.users') }}
+{% endblock %}
