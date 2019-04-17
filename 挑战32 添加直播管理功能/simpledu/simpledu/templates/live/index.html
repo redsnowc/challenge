@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Live{% endblock %}
+
+{% block body %}
+<div class="row">
+  {% for live in lives %}
+  <div class="col-md-9">
+    <h4>{{ live.name }}</h4>
+    <h4>{{ live.user_name.username }}</h4>
+    <video id="videoElement" width="100%" height="500px" controls="controls"></video>
+{% endfor %}
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
+{% endblock %}
+
+{% block tail_js %}
+{{ super() }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.3.3/flv.min.js"></script>
+  <script>
+      //const live_url = "{{ lives[0].live_url }}";
+      if (flvjs.isSupported()) {
+        var videoElement = document.getElementById('videoElement');
+        var flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            isLive: true,
+            url: "https://js.live-play.acgvideo.com/live-js/195377/live_356343185_69633550.flv?wsSecret=2978e4111d614dbe25d4b7c939aec0e0&wsTime=1555499729&trid=cd61429de84242d29c1e02f96609a6c3&order=1&sig=no&platform=web&pSession=EF9WbAx4-78rh-4QS0-imfN-1CmF1dHjkzBJ"
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flvPlayer.play();
+      }
+  </script>
+{% endblock %}
