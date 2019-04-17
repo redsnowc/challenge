@@ -1,0 +1,34 @@
+{% extends "admin/index.html" %}
+
+{% block title %}
+Admin - Live
+{% endblock %}
+
+{% block operation %}
+<a href="{{ url_for('admin.create_live') }}" type="button" class="btn btn-primary">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  添加直播
+</a>
+{% endblock %}
+{% block admin %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User Name</th>
+    </tr>
+    <tbody>
+      {% for live in lives %}
+      <tr>
+        <td>{{ live.name }}</td>
+        <td>{{ live.user_name.username }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </thead>
+</table>
+
+{% endblock %}
+        
+
+
