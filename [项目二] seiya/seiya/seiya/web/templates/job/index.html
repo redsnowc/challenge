@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}JOB{% endblock %}
+
+{% block body %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">首页</a></li>
+    <li class="breadcrumb-item active" aria-current="page">拉勾网职位数据分析</li>
+  </ol>
+</nav>
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">热门工作城市</h5>
+        <p class="card-text">职位数 Top10 城市</p>
+        <a href="{{ url_for('job.top10_city') }}" 
+           class="btn btn-primary">View</a>
+      </div>
+    </div>
+  <br>
+  </div> 
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">薪资最高城市</h5>
+        <p class="card-text">薪资 Top10 城市</p>
+        <a href="{{ url_for('job.top10_wage') }}" 
+           class="btn btn-primary">View</a>
+      </div>
+    </div>
+  <br>
+  </div> 
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+        <p class="card-text">Something Here.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  <br>
+  </div> 
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+        <p class="card-text">Something Here.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  <br>
+  </div> 
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+        <p class="card-text">Something Here.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  <br>
+  </div> 
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+        <p class="card-text">Something Here.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

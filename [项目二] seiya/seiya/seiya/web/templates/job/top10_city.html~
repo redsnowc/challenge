@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}热门工作城市{% endblock %}
+
+{% block body %}
+<center>
+<div id="c1"></div>
+<script>
+
+const data= {{ json_str|tojson|safe }};
+
+const chart = new G2.Chart({
+  container: "c1",
+  width: 800,
+  height: 400,
+});
+chart.source(data);
+chart.interval().position("name*amount").color("name")
+chart.render();
+</script>
+</center>
+{% endblock %}

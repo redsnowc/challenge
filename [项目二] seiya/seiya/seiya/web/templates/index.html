@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<br>
+<div class="card mb-3">
+  <img class="card-img-top" src="https://s2.ax1x.com/2019/04/24/EVIlqJ.jpg" alt="Card image cap">
+  <div class="card-body">
+      <h5 class="card-title"><a href="{{ url_for('job.index') }}">拉勾网职位数据分析</a></h5>
+    <p class="card-text">热门工作城市，薪资最高城市，热门职位标签，工作经验统计，学历要求统计，同等学历不同城市薪资对比。</p>
+  </div>
+</div>
+<br>
+<div class="card mb-3">
+  <img class="card-img-top" src="https://s2.ax1x.com/2019/04/25/EekavT.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><a href="#">链家网租房数据分析</a></h5>
+    <p class="card-text">Something here.</p>
+  </div>
+</div>
+<br>
+<div class="card mb-3">
+  <img class="card-img-top" src="https://s2.ax1x.com/2019/04/25/EeApIs.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><a href="#">点评网餐馆数据分析</a></h5>
+    <p class="card-text">Something here.</p>
+  </div>
+</div>
+{% endblock %}
