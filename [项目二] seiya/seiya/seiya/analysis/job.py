@@ -12,7 +12,7 @@ def analysis_top10_city():
 
 def analysis_top10_wage():
     salary_list = session.query(Job.city, func.avg(
-            (Job.salary_upper+Job.salary_lower)/2)).group_by(
+            (Job.salary_upper + Job.salary_lower) / 2)).group_by(
             Job.city).order_by(func.avg(
             (Job.salary_upper + Job.salary_lower) / 2).desc()).all()
     data = [{'name' : i[0], 'salary': float(i[1])}
